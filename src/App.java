@@ -3,7 +3,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,7 +14,6 @@ class smth extends JFrame implements ActionListener{
     private JLabel Result;
     private double CurrentNum;
 
-    private JLabel MainFrame;
     smth() {
         
         // Initializing the basic frame
