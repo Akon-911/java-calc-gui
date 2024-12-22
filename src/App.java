@@ -21,26 +21,63 @@ class smth extends JFrame implements ActionListener{
         // Initializing the basic frame
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(new Dimension(400,900));
-        this.getContentPane().setBackground(Color.GRAY);
+        this.setPreferredSize(new Dimension(700,700));
+        this.setSize(600, 800);
+        // this.getContentPane().setBackground(Color.GRAY);
         this.setLayout(new BorderLayout());
 
 
-        // Initializing basic Buttons for the Calculator to make it functional
+        // Initializing basic labels for the Calculator to make it functional
+
+        Result = new JLabel();
+
+        Result.setText("Calculations Here");
+        Result.setPreferredSize(new Dimension(200,700));
+        Result.setForeground(Color.WHITE);
+        Result.setBackground(Color.BLACK);
+
+
+
         JLabel Calc_Display = new JLabel();
-        this.setLayout(new GridLayout());
+
+        GridLayout Calc_layout = new GridLayout();
+
+        Calc_layout.setColumns(4);
+        Calc_layout.setRows(4);
+        Calc_layout.setHgap(0);
+        Calc_layout.setVgap(1);
+
+        Calc_Display.setLayout(Calc_layout);
+
+
+        Calc_Display.setVisible(true);
+        Calc_Display.setPreferredSize(new Dimension(500,400));
 
 
 
         // Buttons for expressions
-        JLabel[] Req_Buttons = new JLabel[16];
+        String[] BtnNames = {"1","2","3","4","5","6","7","8","9","0","+","-","X","÷","=","Clear"};
+
+        for (int x = 0; x<16; x++) {
+            JButton thisBtn = new JButton();
+            thisBtn.setName(BtnNames[x]);
+            thisBtn.setVisible(true);
+            thisBtn.setPreferredSize(new Dimension(35,40));
+            thisBtn.setVerticalTextPosition(JButton.CENTER);
+            thisBtn.setHorizontalTextPosition(JButton.CENTER);
+
+            System.out.println(thisBtn);
+            Calc_Display.add(thisBtn);
+        }
 
 
 
         // Button for clear
 
+        this.add(Result, BorderLayout.NORTH);
+        this.add(Calc_Display, BorderLayout.SOUTH);
 
-        this.add(Calc_Display, BorderLayout.CENTER);
+        this.pack();
 
     }
 
