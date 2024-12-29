@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 
 class smth extends JFrame implements ActionListener{
@@ -19,28 +20,25 @@ class smth extends JFrame implements ActionListener{
         // Initializing the basic frame
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setPreferredSize(new Dimension(600,800));
-        this.setSize(600, 900);
+        this.setPreferredSize(new Dimension(600,600));
         this.setResizable(true);
+        this.setSize(600, 600);
         this.setMinimumSize(new Dimension(400,400));
-        this.getContentPane().setBackground(Color.GRAY);
+        this.getContentPane().setBackground(Color.BLACK);
         this.setLayout(new BorderLayout());
         int wide = this.getWidth();
 
         // Initializing basic labels for the Calculator to make it functional
 
         Result = new JLabel();
+        CurrentNum = 0;
 
-        Result.setText("Calc Here");
-        Result.setSize(new Dimension(wide,this.getHeight()/5));
-        Result.setPreferredSize(new Dimension(wide,this.getHeight()/5));
-        Result.setMinimumSize(new Dimension(wide,50));
+        Result.setText(Double.toString(CurrentNum)); // Converting the current num to String
+        Result.setFont(new Font("Times New Roman", 1, 45));
         Result.setForeground(Color.WHITE);
         Result.setBackground(Color.BLACK);
         Result.setOpaque(true);
-        Result.setVerticalTextPosition(JLabel.TOP);
         Result.setHorizontalAlignment(JLabel.RIGHT);
-
 
 
         JLabel Calc_Display = new JLabel();
@@ -56,26 +54,24 @@ class smth extends JFrame implements ActionListener{
         // Setting the layout for the Buttons
 
         Calc_Display.setVisible(true);
-        Calc_Display.setSize(new Dimension(wide,4*(this.getHeight()/5)));
         Calc_Display.setPreferredSize(new Dimension(wide,4*(this.getHeight()/5)));
-        Calc_Display.setMinimumSize(new Dimension(wide,200));
+        Calc_Display.setMinimumSize(new Dimension(wide,210));
 
 
         // Buttons for expressions
-        String[] BtnNames = {"1","2","3","4","5","6","7","8","9","0","+","-","X","÷","=","C"};
+        String[] BtnNames = {"1","2","3","+","4","5","6","-","7","8","9","X","÷","0","=","C"};
 
         for (int x = 0; x<16; x++) {
             JButton thisBtn = new JButton();
             thisBtn.setText(BtnNames[x]);
+            thisBtn.setName(BtnNames[x]);
             thisBtn.setVisible(true);
-            thisBtn.setSize(new Dimension(wide/4,5));
-            thisBtn.setPreferredSize(new Dimension(wide/4,5));
-            thisBtn.setMinimumSize(new Dimension(wide/4,5));
             thisBtn.setVerticalTextPosition(JButton.CENTER);
             thisBtn.setHorizontalTextPosition(JButton.CENTER);
             thisBtn.setBackground(Color.WHITE);
             thisBtn.setForeground(Color.BLACK);
             thisBtn.setOpaque(true);
+            thisBtn.setFont(new Font("Times New Roman", 1, 45));
 
             Calc_Display.add(thisBtn);
         }
