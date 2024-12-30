@@ -37,7 +37,7 @@ class smth extends JFrame {
         ResultLab = new JLabel();
         CurrentNum = 0;
 
-        ResultLab.setText(Double.toString(CurrentNum)); // Converting the current num to String
+        ResultLab.setText("0"); // Converting the current num to String
         ResultLab.setFont(new Font("Times New Roman", 1, 45));
         ResultLab.setForeground(Color.WHITE);
         ResultLab.setBackground(Color.BLACK);
@@ -104,19 +104,39 @@ class ActWorker implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String opr = x.getName();
-        if (opr == "x" || opr == "+" || opr == "-" || opr == "÷") {
-            // double toShow = btnFunc.Operation(opr,smth.ResultLab,smth.CurrentNum);
-            // if (toShow == (Double) null) {
-            //     smth.ResultLab.setText(Double.toString(smth.CurrentNum));
-            // } else {
-            //     smth.ResultLab.setText(Double.toString(toShow));
-            //     smth.CurrentNum = toShow;
-            // }
-            smth.ResultLab.setText("Operation Here");
+
+        String opr = x.getName(); // Getting the input button character.
+
+        // Setting the if-else statement
+        if (opr == "x" || opr == "+" || opr == "-" || opr == "÷") { // For the operations
+            double toShow = btnFunc.Operation(opr,smth.ResultLab,smth.CurrentNum);
+            if (toShow == (Double) null) {
+                smth.ResultLab.setText(Double.toString(smth.CurrentNum));
+            } else {
+                smth.ResultLab.setText(Double.toString(toShow));
+                smth.CurrentNum = toShow;
+            }
+            // smth.ResultLab.setText("Operation Here");
         }
-        else {
-            smth.ResultLab.setText("Numericals Here");
+        else if (opr=="=") { // For the `equals to` button
+            double ResultCalc = Double.parseDouble(smth.ResultLab.getText());
+            smth.ResultLab.setText(Double.toString(ResultCalc));
+            smth.CurrentNum = ResultCalc;
+        } else if (opr == "C") { // Making the Clear Button work
+
+            smth.ResultLab.setText("0");
+            smth.CurrentNum=0.00;
+
+        } else { // For the rest of the numbers
+
+
+            String thisInt = smth.ResultLab.getText();
+            if (thisInt == "0") {
+                smth.ResultLab.setText(opr);
+            } else {
+                smth.ResultLab.setText(thisInt + opr);
+            }
+
         }
     }
     
