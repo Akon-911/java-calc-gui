@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.GridLayout;
@@ -10,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 
 import functions.btnFunc;
 
@@ -109,23 +111,41 @@ class ActWorker implements ActionListener {
 
         // Setting the if-else statement
         if (opr == "x" || opr == "+" || opr == "-" || opr == "÷") { // For the operations
-            double toShow = btnFunc.Operation(opr,smth.ResultLab,smth.CurrentNum);
-            if (toShow == (Double) null) {
-                smth.ResultLab.setText(Double.toString(smth.CurrentNum));
-            } else {
-                smth.ResultLab.setText(Double.toString(toShow));
-                smth.CurrentNum = toShow;
-            }
+        
+            btnFunc.Operation(opr,smth.ResultLab,smth.CurrentNum);
+            
             // smth.ResultLab.setText("Operation Here");
         }
         else if (opr=="=") { // For the `equals to` button
-            double ResultCalc = Double.parseDouble(smth.ResultLab.getText());
-            smth.ResultLab.setText(Double.toString(ResultCalc));
-            smth.CurrentNum = ResultCalc;
+
+            String t = smth.ResultLab.getText();
+            
+            StringBuffer newTxt = new StringBuffer(t);
+
+            if (t.endsWith("x") || t.endsWith("-") || t.endsWith("+") || t.endsWith("÷")) {
+                newTxt = newTxt.deleteCharAt(t.length()-1);
+                smth.ResultLab.setText(newTxt.toString());
+            } else {
+                // Making the string compatible for 
+                for(int i = 0; i<t.length(); i++) {
+                    if (t.charAt(i) == '÷') {
+                        newTxt.setCharAt(i, '/');
+                    }
+                }
+                try {
+                    double ResultCalc = Double.parseDouble(newTxt.toString());
+                    smth.ResultLab.setText(Double.toString(ResultCalc));
+                    smth.CurrentNum = ResultCalc;
+                } catch (Exception err) {
+                    JOptionPane.showMessageDialog(null,"Error, you tried to divide something by 0... ","Error", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                
+            }
         } else if (opr == "C") { // Making the Clear Button work
 
             smth.ResultLab.setText("0");
-            smth.CurrentNum=0.00;
+            smth.CurrentNum=0;
 
         } else { // For the rest of the numbers
 
