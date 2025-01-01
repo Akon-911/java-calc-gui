@@ -50,21 +50,29 @@ public class btnFunc {
         
     };
 
+    // A function for solving the equation
     public static String NrmInt(String x, double num) {
+
+        // Creating 2 variables considering there will be 2 numbers on what I will be performing operations on
         double firstInt, SecondInt;
 
         for (int i = 0; i<x.length();i++) {
+            // Ignoring the decimal point..
             if (x.charAt(i) == '.') continue;
+
+            // Creating the main loop where I will be initializing the first and second deciamals to deal with.
             if (!Character.isDigit(x.charAt(i))) {
                 firstInt = Double.parseDouble(x.substring(0, i));
                 SecondInt = Double.parseDouble(x.substring(i+1, x.length()));
+
+                // Creating switch case to solve things right away
                 switch(x.charAt(i)){
                     case('x'):
                         num = firstInt*SecondInt;
                         break;
                     case('÷'):
                         if (SecondInt == Double.parseDouble("0")) {
-                            return "e0";
+                            return "e0"; // Dividing by 0 error
                         } else {
                             num = firstInt / SecondInt;
                         }
@@ -81,7 +89,7 @@ public class btnFunc {
             
         }
         String res = Double.toString(num);
-        if (res.endsWith(".0")) return res.substring(0, res.length()-2);
+        if (res.endsWith(".0")) return res.substring(0, res.length()-2); // Just removing those decimals if it's .00 (coz they break the way they work sometimes)
         return res;
     }
 

@@ -1,11 +1,14 @@
 ## About This Project
 
-`wip, will be updated within next two commits`
+`v0.1` - January 01, 2025
+
+This is a simple GUI Calculator, I am just trying to demonstrate how much I could do with Java UI without using external help (incl. StackOverFlow, AI Generated code) in order to get better understanding on how to work with Frontend using Java.
+
+In Future updates, I will try to make it better
 
 ## Libraries used
 
-`wip, will be updated within next two commits`
-
+`Swing`  - w/ JFrame for UI
 
 ## Folder Structure
 
