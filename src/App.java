@@ -112,7 +112,7 @@ class ActWorker implements ActionListener {
         // Setting the if-else statement
         if (opr == "x" || opr == "+" || opr == "-" || opr == "÷") { // For the operations
         
-            btnFunc.Operation(opr,smth.ResultLab,smth.CurrentNum);
+            smth.CurrentNum = btnFunc.Operation(opr,smth.ResultLab,smth.CurrentNum);
             
             // smth.ResultLab.setText("Operation Here");
         }
@@ -122,26 +122,22 @@ class ActWorker implements ActionListener {
             
             StringBuffer newTxt = new StringBuffer(t);
 
+            // Removing Accidental signs...
             if (t.endsWith("x") || t.endsWith("-") || t.endsWith("+") || t.endsWith("÷")) {
                 newTxt = newTxt.deleteCharAt(t.length()-1);
                 smth.ResultLab.setText(newTxt.toString());
-            } else {
-                // Making the string compatible for 
-                for(int i = 0; i<t.length(); i++) {
-                    if (t.charAt(i) == '÷') {
-                        newTxt.setCharAt(i, '/');
-                    }
-                }
-                try {
-                    double ResultCalc = Double.parseDouble(newTxt.toString());
-                    smth.ResultLab.setText(Double.toString(ResultCalc));
-                    smth.CurrentNum = ResultCalc;
-                } catch (Exception err) {
-                    JOptionPane.showMessageDialog(null,"Error, you tried to divide something by 0... ","Error", JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-                
             }
+
+            String res = btnFunc.NrmInt(newTxt.toString(), smth.CurrentNum);
+            if (res == "E0") {
+                JOptionPane.showMessageDialog(null,"Error, you tried to divide something by 0... ","Error", JOptionPane.WARNING_MESSAGE);
+                return; // to avoid errors...
+            }
+            smth.CurrentNum = Double.parseDouble(res);
+            smth.ResultLab.setText(res);
+
+
+
         } else if (opr == "C") { // Making the Clear Button work
 
             smth.ResultLab.setText("0");
