@@ -129,14 +129,14 @@ class ActWorker implements ActionListener {
             }
 
             String res = btnFunc.NrmInt(newTxt.toString(), smth.CurrentNum);
-            if (res == "E0") {
+            if (res == "e0") {
                 JOptionPane.showMessageDialog(null,"Error, you tried to divide something by 0... ","Error", JOptionPane.WARNING_MESSAGE);
                 return; // to avoid errors...
+            } else {
+                smth.CurrentNum = Double.parseDouble(res);
+                smth.ResultLab.setText(res);
             }
-            smth.CurrentNum = Double.parseDouble(res);
-            smth.ResultLab.setText(res);
-
-
+            
 
         } else if (opr == "C") { // Making the Clear Button work
 

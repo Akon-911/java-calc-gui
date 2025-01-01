@@ -27,11 +27,7 @@ public class btnFunc {
 
         for(int i = 0; i<t.length(); i++) {
             
-            if (t.charAt(i) == '÷') {
-                newTxt.setCharAt(i, '/');
-                reqNormalization = true;
-            }
-            else if (t.charAt(i) == 'x' || t.charAt(i) == '+' || t.charAt(i) =='-') {
+            if (t.charAt(i) == '÷' || t.charAt(i) == 'x' || t.charAt(i) == '+' || t.charAt(i) =='-') {
                 reqNormalization = true;
             }
         }
@@ -39,7 +35,7 @@ public class btnFunc {
         if (reqNormalization == true) {
             
             String nrm  = NrmInt(newTxt.toString(),CurrentNum);
-            if (nrm =="E0") {
+            if (nrm =="e0") {
                 JOptionPane.showMessageDialog(null,"Error, you tried to divide something by 0... ","Error", JOptionPane.WARNING_MESSAGE);
                 return CurrentNum;
             } else {
@@ -66,9 +62,9 @@ public class btnFunc {
                     case('x'):
                         num = firstInt*SecondInt;
                         break;
-                    case('/'):
-                        if (SecondInt == 0.0) {
-                            return "E0";
+                    case('÷'):
+                        if (SecondInt == Double.parseDouble("0")) {
+                            return "e0";
                         } else {
                             num = firstInt / SecondInt;
                         }
