@@ -1,2 +1,4 @@
 bin
+/src/*.class
+/src/*/*.class
 .vscode
